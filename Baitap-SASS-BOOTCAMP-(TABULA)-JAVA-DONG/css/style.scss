@@ -1,0 +1,312 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    display: inline;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.row {
+    padding: 0;
+    margin: 0;
+}
+//đặt biến color
+$color-text: #b61984;
+$color-white: #fff;
+$color-black: #000;
+$color-info: #dcd1f3;
+$color-menu: rgb(159, 15, 15);
+//tạo media reponsive
+$mobile-width: 576px;
+$tablet-width: 768px;
+$desktop-width: 992px;
+
+@mixin mobile {
+    @media (max-width: #{$mobile-width }) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (max-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+//======mixin styleBackgroundImg======
+@mixin styleBackgroundImg($position, $repeat, $size, $width, $height) {
+    background-position: $position;
+    background-repeat: $repeat;
+    background-size: $size;
+    width: $width;
+    height: $height;
+}
+//======mixin styleFont======
+
+@mixin styleFont($color, $size, $height) {
+    color: $color;
+    font-size: $size;
+    line-height: $height;
+}
+//======mixin stylebtn======
+
+@mixin stylebtn($width, $height, $radius, $color, $bgcolor) {
+    width: $width;
+    height: $height;
+    border-radius: $radius;
+    color: $color;
+    background-color: $bgcolor;
+}
+//======mixin styleHover======
+
+@mixin styleHover($bgColor, $color) {
+    background-color: $bgColor;
+    color: $color;
+}
+.header {
+    .nav {
+        .nav-item {
+            @include styleFont($color-white, 13px, 27px);
+            padding: 0px 18px 0px 0px;
+
+            a {
+                @include styleFont($color-black, 15px, 80px);
+                font-weight: 600;
+                @include mobile {
+                    color: $color-menu;
+                }
+            }
+        }
+
+        .nav-item a:hover {
+            color: $color-text;
+        }
+        .header-right {
+            padding-top: 30px;
+        }
+        .container {
+            position: relative;
+            z-index: 3;
+        }
+    }
+}
+
+.about-us {
+    @include mobile {
+        img {
+            width: 100%;
+        }
+    }
+    span {
+        @include styleFont($color-text, 16.5px, 19.8px);
+
+        font-weight: 600;
+        margin: 0px 0px 8.25px;
+        text-align: left;
+    }
+    p {
+        @include styleFont($color-black, 57px, 68.4px);
+
+        font-weight: 700;
+        text-align: left;
+    }
+    .background-top {
+        background-image: url(/img/yellow_top_wave_01.png);
+        @include styleBackgroundImg(center, no-repeat, cover, 100%, 240px);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+    }
+    .background-bottom {
+        background-image: url(/img/Violet_top_left_wave.png);
+        @include styleBackgroundImg(center, no-repeat, cover, 100%, 360px);
+
+        @include desktop() {
+            top: 557px;
+        }
+        @include tablet() {
+            top: 536px;
+        }
+        @include mobile {
+            top: 447px;
+        }
+        position: absolute;
+        top: 319px;
+        left: 0;
+        z-index: -1;
+        display: block;
+    }
+}
+
+.info-teachers {
+    .info-img {
+        img {
+            width: 100%;
+        }
+    }
+    background-color: $color-info;
+    .info-content {
+        text-align: center;
+        padding-top: 10px;
+        background-color: #fff;
+
+        p {
+            @include styleFont($color-text, 11.25px, 13.5px);
+            font-weight: 600;
+            margin: 0px 0px 7.875px;
+        }
+
+        span {
+            @include styleFont($color-black, 15px, 27px);
+        }
+    }
+}
+
+.find-Course {
+    @include mobile {
+        .container {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .btContactName {
+        position: relative;
+        .logo {
+            i {
+                position: absolute;
+                top: 11px;
+                left: 16px;
+                color: $color-text;
+            }
+        }
+    }
+    .btContactEmail {
+        @extend .btContactName;
+    }
+    .country {
+        position: relative;
+        .logo {
+            i {
+                position: absolute;
+                top: 11px;
+                left: 29px;
+                color: $color-text;
+            }
+        }
+    }
+    .inp {
+        position: relative;
+        .logo {
+            i {
+                position: absolute;
+                top: 46px;
+                left: 24px;
+                color: $color-text;
+            }
+        }
+    }
+    background-color: rgba(255, 255, 255, 0.236);
+    position: relative;
+    z-index: 3;
+
+    .background-img {
+        background-image: url(/img/accent_bottom_wave_01.png);
+        @include styleBackgroundImg(center, no-repeat, cover, 100%, 600px);
+
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        z-index: -1;
+        display: block;
+    }
+    .btn {
+        @include stylebtn(140px, 48px, 48px, $color-white, $color-text);
+        font-size: 20px;
+        margin-top: 20px;
+
+        &:hover {
+            @include styleHover($color-white !important, $color-text);
+        }
+    }
+    .col-left {
+        background-color: $color-white;
+    }
+
+    input {
+        padding-left: 40px !important;
+    }
+    .country {
+        .form-control {
+            padding-left: 40px !important;
+        }
+    }
+    .inp {
+        .form-control {
+            padding-left: 40px !important;
+        }
+    }
+}
+
+.footer {
+    @include desktop {
+        height: auto;
+    }
+    @include tablet() {
+        height: auto;
+    }
+    @include mobile {
+        line-height: 40px;
+        font-weight: 600;
+        padding: 0;
+    }
+    padding-top: 150px;
+    background-image: url(/img/footer_background.jpg);
+    @include styleBackgroundImg(center, no-repeat, cover, 100%, 500px);
+    align-items: center;
+    h1 {
+        color: $color-white;
+    }
+    .content-link {
+        a {
+            display: block;
+            color: $color-white;
+        }
+    }
+    .content-about {
+        @extend.content-link;
+    }
+    .footer-content-right {
+        color: $color-white;
+    }
+    .bb-icon {
+        a {
+            color: $color-white;
+            &:hover {
+                color: $color-black;
+            }
+        }
+    }
+
+    .btn {
+        @include stylebtn(200px, 35px, 20px, $color-black, $color-white);
+
+        text-align: left;
+        &:hover {
+            @include styleHover($color-text, $color-white);
+        }
+    }
+}
